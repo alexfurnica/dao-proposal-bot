@@ -1,5 +1,5 @@
 const ethers = require('ethers');
-const { registered } = require('../modules/userWallets.js');
+const { registered } = require('../modules/tables.js');
 require('dotenv').config();
 
 exports.run = async (client, message, args, level) => {

@@ -81,6 +81,17 @@ function toProperCase(string) {
   return string.replace(/([^\W_]+[^\s-]*) */g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 }
 
+// getTodayString() returns today's date (yyyymmdd) as a string with no hyphens in between
+// Example: 20211006 would be returned if the function were run on 2021-10-06
+function getTodayString() {
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0');
+  let yyyy = String(today.getFullYear());
+
+  return yyyy + mm + dd
+}
+
 // These 2 process methods will catch exceptions and give *more details* about the error and stack trace.
 process.on("uncaughtException", (err) => {
   const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
@@ -96,4 +107,4 @@ process.on("unhandledRejection", err => {
   console.error(err);
 });
 
-module.exports = { getSettings, permlevel, awaitReply, toProperCase };
+module.exports = { getSettings, permlevel, awaitReply, toProperCase, getTodayString };
